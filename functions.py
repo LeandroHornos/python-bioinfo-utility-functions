@@ -243,6 +243,9 @@ def set_background(color):
     ).format(color)
     
     display(HTML('<img src onerror="{}" style="display:none">'.format(script)))
+    
+# -------------------------------------------------------------------------------------------
+
 def export_dfs_to_excel_book(df_list, sheetname_list, filename='dataframes.xlsx', path='./', index=True):
     with pd.ExcelWriter(f'{path}/{filename}') as writer:
         for idx, df in enumerate(df_list):
@@ -250,6 +253,23 @@ def export_dfs_to_excel_book(df_list, sheetname_list, filename='dataframes.xlsx'
     print('Se guardaron las hojas con éxito')
 
 # ------------------------------------------------------------------------------------
+
+def missing_values_percent_df(dataframe):
+    '''
+    porcentaje_valores_nulos(dataframe) => dataframe.
+    Esta función calcula el porcentaje de valores nulos
+    en cada columna de un dataframe y devuelve otro
+    indicando con los resultados
+    '''
+    # Calcular el porcentaje de valores nulos por columna
+    porcentaje_missing = (dataframe.isnull().mean() * 100).round(2)
+
+    # Crear un nuevo DataFrame con los resultados
+    resultado = pd.DataFrame({'Column': porcentaje_missing.index, 'Missing[%]': porcentaje_missing.values})
+
+    return resultado
+
+# -------------------------------------------------------------------------------------
 
 def comparar_columnas(df1, df2):
     # Obtener nombres de columnas de ambos dataframes
@@ -313,30 +333,6 @@ def comparar_varias_listas(listas:list, nombres:list):
     
     return resultados
 
-# ---------------------------------------------------------------------------------------
-
-def calculate_cols_true_percent(df):
-    # Creo un DataFrame vacío para almacenar los resultados
-    result_df = pd.DataFrame(columns=['True_percent'])
-    
-    # Itero sobre cada columna del DataFrame original
-    for column in df.columns:
-        # Cuento el número de valores True en la columna actual
-        true_count = df[column].sum()
-        # Cuento el número total de valores no nulos en la columna actual
-        total_count = df[column].count()
-        
-        # Calculo el porcentaje de valores True
-        if total_count > 0:
-            true_percent = (true_count / total_count) * 100
-        else:
-            true_percent = 0
-        
-        # Agrego el porcentaje calculado al DataFrame de resultados
-        result_df.loc[column] = [true_percent]
-    
-    return result_df
-
 # ----------------------------------------------------------------------------------------
 
 def print_dictree(dc:dict, first=True):
@@ -370,17 +366,24 @@ def reorder_booldf_cols_by_true_count(df):
  # -------------------------------------------------------------------------------
  
     
-def missing_values_percent_df(dataframe):
-    '''
-    porcentaje_valores_nulos(dataframe) => dataframe.
-    Esta función calcula el porcentaje de valores nulos
-    en cada columna de un dataframe y devuelve otro
-    indicando con los resultados
-    '''
-    # Calcular el porcentaje de valores nulos por columna
-    porcentaje_missing = (dataframe.isnull().mean() * 100).round(2)
-
-    # Crear un nuevo DataFrame con los resultados
-    resultado = pd.DataFrame({'Column': porcentaje_missing.index, 'Missing[%]': porcentaje_missing.values})
-
-    return resultado
+def calculate_cols_true_percent(df):
+    # Creo un DataFrame vacío para almacenar los resultados
+    result_df = pd.DataFrame(columns=['True_percent'])
+    
+    # Itero sobre cada columna del DataFrame original
+    for column in df.columns:
+        # Cuento el número de valores True en la columna actual
+        true_count = df[column].sum()
+        # Cuento el número total de valores no nulos en la columna actual
+        total_count = df[column].count()
+        
+        # Calculo el porcentaje de valores True
+        if total_count > 0:
+            true_percent = (true_count / total_count) * 100
+        else:
+            true_percent = 0
+        
+        # Agrego el porcentaje calculado al DataFrame de resultados
+        result_df.loc[column] = [true_percent]
+    
+    return result_df
