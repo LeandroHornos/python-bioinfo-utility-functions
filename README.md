@@ -13,8 +13,8 @@ Asegúrate de tener instaladas las siguientes bibliotecas antes de utilizar esta
 
 ## Uso en proyectos
 
-**1.** Clonar el repositorio desde github
-**2.** Identificar la ruta completa al archivo functions.py en el respositorio clonado
+**1.** Clonar el repositorio desde github<br>
+**2.** Identificar la ruta completa al archivo functions.py en el respositorio clonado<br>
 **3.** Editar el archivo ~/.bashrc y agregar la siguiente función:
 
 ```bash
@@ -29,15 +29,21 @@ Asegúrate de tener instaladas las siguientes bibliotecas antes de utilizar esta
 }
 
 ```
-
-Luego, desde el nivel superior de la carpeta del proyecto ejecutar en un terminal:
+**4.** Volver a cargar el archivo .bashrc
 
 ```bash
+source ~/.bashrc
+```
+
+**5.** Para agregar las funciones a un proyecto, desde el nivel superior de la carpeta del proyecto ejecutar en un terminal:
+
+```bash
+source ~/.bashrc
 update_py_functions
 ```
 Si el archivo no existe se creará una copia, y si existe se actualizará a la última versión.
 
-Luego se pueden importar las funciones desde un script de python o un jupyter notebook que se encuentren en la misma carpeta (o en un nivel inferior)
+**6.** Luego se pueden importar las funciones desde un script de python o un jupyter notebook que se encuentren en la misma carpeta (o en un nivel inferior)
 
 ```python
 from functions import (
