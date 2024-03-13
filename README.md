@@ -93,7 +93,7 @@ Imprime recursivamente la estructura de un diccionario.
 
 Reordena las columnas de un DataFrame booleano por el número de valores verdaderos.
 
----
+### 21. `calculate_true_percent(df)`
 
-¡Espero que estas funciones sean útiles para tu trabajo en bioinformática!
+Esta función toma un DataFrame de Pandas que contiene solo valores booleanos y devuelve un nuevo DataFrame con el porcentaje de valores verdaderos en cada columna.
 
