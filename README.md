@@ -11,6 +11,42 @@ Asegúrate de tener instaladas las siguientes bibliotecas antes de utilizar esta
 - python-pptx
 - matplotlib
 
+## Uso en proyectos
+
+**1.** Clonar el repositorio desde github
+**2.** Identificar la ruta completa al archivo functions.py en el respositorio clonado
+**3.** Editar el archivo ~/.bashrc y agregar la siguiente función:
+
+```bash
+    function update_py_functions() {
+    if [ -f "functions.py" ]; then
+        echo "Ya existe una copia local de functions.py. Sobreescribiendo..."
+    fi
+    
+    cp /full/path/to/functions.py ./functions.py
+    
+    echo "Archivo functions.py actualizado correctamente."
+}
+
+```
+
+Luego, desde el nivel superior de la carpeta del proyecto ejecutar en un terminal:
+
+```bash
+update_py_functions
+```
+Si el archivo no existe se creará una copia, y si existe se actualizará a la última versión.
+
+Luego se pueden importar las funciones desde un script de python o un jupyter notebook que se encuentren en la misma carpeta (o en un nivel inferior)
+
+```python
+from functions import (
+    read_excel_to_dict,
+    print_dictree,
+    reorder_booldf_cols_by_true_count
+)
+```
+
 ## Funciones Disponibles
 
 ### 1. `summary(df)`
