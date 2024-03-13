@@ -15,7 +15,7 @@ Asegúrate de tener instaladas las siguientes bibliotecas antes de utilizar esta
 
 **1.** Clonar el repositorio desde github<br>
 **2.** Identificar la ruta completa al archivo functions.py en el respositorio clonado<br>
-**3.** Editar el archivo ~/.bashrc y agregar la siguiente función:
+**3.** Editar el archivo ~/.bashrc y agregar la siguiente función (editar la ruta al archivo!):
 
 ```bash
     function update_py_functions() {
