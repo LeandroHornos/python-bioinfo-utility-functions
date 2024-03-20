@@ -13,6 +13,7 @@ import pandas as pd
 from Bio import Entrez
 from IPython.display import HTML, display
 import os
+import re
 
 from pptx import Presentation
 from pptx.util import Inches
@@ -387,3 +388,19 @@ def calculate_cols_true_percent(df):
         result_df.loc[column] = [true_percent]
     
     return result_df
+
+# -----------------------------------------------------------------------------------
+
+
+def clean_keys_for_excel(dictionary):
+    """
+    Para usar los nombres de las claves de un diccionario en excel es necesario que las strings sigan ciertas
+    reglas.
+    La funcion toma el diccionario y lo devuelve con las claves preparadas para exportar a excel
+    """
+    # Definir el patrón de los caracteres a eliminar
+    pattern = r"[\[\]:*?/\\]"
+    
+    # Usar una comprensión de diccionario para renombrar y limpiar las claves
+    return {re.sub(pattern, "", key[:30]): value for key, value in dictionary.items()}
+
